@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vagaz\\Desktop\\сайт\\sait\\sait\\sait.csproj": {}
+    "C:\\Users\\vagaz\\Documents\\GitHub\\sait\\сайт\\sait\\sait\\sait.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vagaz\\Desktop\\сайт\\sait\\sait\\sait.csproj": {
+    "C:\\Users\\vagaz\\Documents\\GitHub\\sait\\сайт\\sait\\sait\\sait.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vagaz\\Desktop\\сайт\\sait\\sait\\sait.csproj",
+        "projectUniqueName": "C:\\Users\\vagaz\\Documents\\GitHub\\sait\\сайт\\sait\\sait\\sait.csproj",
         "projectName": "sait",
-        "projectPath": "C:\\Users\\vagaz\\Desktop\\сайт\\sait\\sait\\sait.csproj",
+        "projectPath": "C:\\Users\\vagaz\\Documents\\GitHub\\sait\\сайт\\sait\\sait\\sait.csproj",
         "packagesPath": "C:\\Users\\vagaz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vagaz\\Desktop\\сайт\\sait\\sait\\obj\\",
+        "outputPath": "C:\\Users\\vagaz\\Documents\\GitHub\\sait\\сайт\\sait\\sait\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\vagaz\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,6 +39,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
