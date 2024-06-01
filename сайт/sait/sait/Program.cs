@@ -1,5 +1,9 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using sait;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using sait.DataBase;
 
 namespace sait
@@ -13,9 +17,21 @@ namespace sait
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            // Добавьте строку для регистрации контекста базы данных
+            // Register the database context
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = "Cookies";
+                options.DefaultChallengeScheme = "Cookies";
+            }).AddCookie("Cookies", options =>
+            {
+                options.Cookie.Name = "DaddysPizzaCockies"; // Укажите имя куки
+                options.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.None; // Разрешить использование куки во внешних сайтах
+                options.Cookie.HttpOnly = true; // Запретить JavaScript доступ к куки
+                options.ExpireTimeSpan = TimeSpan.FromDays(30); // Время жизни куки (30 дней, например)
+            });
+
 
             var app = builder.Build();
 
@@ -31,6 +47,7 @@ namespace sait
 
             app.UseRouting();
 
+            app.UseAuthentication(); // Ensure authentication is used
             app.UseAuthorization();
 
             app.MapControllerRoute(

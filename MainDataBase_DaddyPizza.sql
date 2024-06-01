@@ -107,6 +107,8 @@ create table ComboItems
 	idCombo int foreign key references Combos(id),
 	idPizza int foreign key references Pizzas(id)
 )
+-- Rename the custom Roles table
+EXEC sp_rename 'Roles', 'ApplicationRoles';
 
 go
 create table OrderCombos
@@ -116,3 +118,9 @@ create table OrderCombos
 	idOrder int foreign key references Orders(id),
 	count int not null
 )
+GO
+USE PizzaForGoodDaddyDB
+GO
+insert into Roles values ('пользователь',GETDATE())
+
+select * from Users

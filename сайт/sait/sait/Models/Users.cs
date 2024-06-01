@@ -1,16 +1,17 @@
-﻿using System;
+﻿using sait.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace sait.Models
+public class Users
 {
-    public class Users
-    {
-        public int Id { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public int IdRole { get; set; }
-        public string Address { get; set; }
-        public DateTime CreateDate { get; set; }
+    public int id { get; set; }
+    public string email { get; set; }
+    public string password { get; set; }
 
-        public Roles Role { get; set; }
-    }
+    [ForeignKey("Role")] // указываем имя столбца внешнего ключа
+    public int idRole { get; set; }
+
+    public string adress { get; set; }
+    public DateTime createDate { get; set; }
+
+    public Roles Role { get; set; }
 }
