@@ -1,77 +1,73 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using sait.DataBase;
-using sait.Models;
-using sait.ViewModels;
-using System.Security.Claims;
+﻿    using BCrypt.Net; // Добавьте это пространство имен
+    using Microsoft.AspNetCore.Authentication;
+    using Microsoft.AspNetCore.Authentication.Cookies;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using sait.DataBase;
+    using sait.Models;
+    using sait.ViewModels;
+    using System.Security.Claims;
 
-namespace sait.Controllers
-{
-    public class AccountController : Controller
+    namespace sait.Controllers
     {
-        private readonly ApplicationDbContext _context;
-
-        public AccountController(ApplicationDbContext context)
+        public class AccountController : Controller
         {
-            _context = context;
-        }
+            private readonly ApplicationDbContext _context;
 
-        public IActionResult Login(string? returnUrl = null)
-        {
-            ViewData["ReturnUrl"] = returnUrl;
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Login(LoginVM model, string returnUrl)
-        {
-            ViewData["ReturnUrl"] = returnUrl;
-            if (ModelState.IsValid)
+            public AccountController(ApplicationDbContext context)
             {
-                var user = await _context.Users.FirstOrDefaultAsync(u => u.email == model.Email && u.password == model.Password);
-
-                if (user != null)
-                {
-                    // Аутентификация пользователя
-                    var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, user.email),
-                // Добавьте дополнительные утверждения, если необходимо
-            };
-
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    var authProperties = new AuthenticationProperties
-                    {
-                        // Запомнить пользователя, если это установлено в true
-                        IsPersistent = model.RememberMe,
-                        // Дополнительные настройки аутентификации, если необходимо
-                    };
-
-                    await HttpContext.SignInAsync(
-                        CookieAuthenticationDefaults.AuthenticationScheme,
-                        new ClaimsPrincipal(claimsIdentity),
-                        authProperties);
-
-                    // Перенаправление пользователя на страницу, которая была запрошена перед входом
-                    return RedirectToLocal(returnUrl);
-                }
-
-                ModelState.AddModelError("", "Invalid login attempt");
+                _context = context;
             }
-            return View(model);
-        }
 
+            public IActionResult Login(string? returnUrl = null)
+            {
+                ViewData["ReturnUrl"] = returnUrl;
+                return View();
+            }
 
-        public IActionResult Register()
+            [HttpPost]
+            public async Task<IActionResult> Login(LoginVM model, string returnUrl)
+            {
+                ViewData["ReturnUrl"] = returnUrl;
+                if (ModelState.IsValid)
+                {
+                    var user = await _context.Users.FirstOrDefaultAsync(u => u.email == model.Email);
+
+                    if (user != null && BCrypt.Net.BCrypt.Verify(model.Password, user.password))
+                    {
+                        var claims = new List<Claim>
+                        {
+                            new Claim(ClaimTypes.Name, user.email),
+                        };
+
+                        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        var authProperties = new AuthenticationProperties
+                        {
+                            IsPersistent = true,
+                        };
+
+                        await HttpContext.SignInAsync(
+                            CookieAuthenticationDefaults.AuthenticationScheme,
+                            new ClaimsPrincipal(claimsIdentity),
+                            authProperties);
+                        return RedirectToLocal(returnUrl);
+                    }
+
+                    ModelState.AddModelError("", "Не удалось войти в аккаунт");
+                }
+                return View(model);
+            }
+
+        public IActionResult Register(string? returnUrl = null)
         {
+            ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterVM model)
+        public async Task<IActionResult> Register(RegisterVM model, string returnUrl)
         {
+            ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
                 var isUserExists = await _context.Users.FirstOrDefaultAsync(u => u.email == model.Email);
@@ -80,19 +76,37 @@ namespace sait.Controllers
                     ModelState.AddModelError("", "Пользователь с таким email уже существует");
                     return View(model);
                 }
+
+                var hashedPassword = BCrypt.Net.BCrypt.HashPassword(model.Password);
+
                 var newUser = new Users
                 {
                     email = model.Email,
-                    password = model.Password,
+                    password = hashedPassword,
                     createDate = DateTime.Now,
                     idRole = 1,
                     adress = model.Address
                 };
 
                 _context.Users.Add(newUser);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
 
-                return RedirectToAction("Login");
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, newUser.email),
+                };
+
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = true,
+                };
+
+                await HttpContext.SignInAsync(
+                    CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(claimsIdentity),
+                    authProperties);
+                return RedirectToLocal(returnUrl);
             }
             return View(model);
         }
@@ -106,7 +120,6 @@ namespace sait.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-
         private IActionResult RedirectToLocal(string? returnUrl)
         {
             if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
@@ -119,7 +132,5 @@ namespace sait.Controllers
                 return RedirectToAction(nameof(HomeController.MainMenu), "Home");
             }
         }
-
-
     }
 }

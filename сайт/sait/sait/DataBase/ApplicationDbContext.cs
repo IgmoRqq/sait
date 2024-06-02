@@ -24,9 +24,13 @@ namespace sait.DataBase
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Pizzas>(entity =>
+            {
+                entity.Property(e => e.idCategory)
+                      .HasColumnName("idCategory");
+            });
             base.OnModelCreating(modelBuilder);
 
-            // Configure relationships and constraints here if necessary
         }
     }
 }

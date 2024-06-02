@@ -4,8 +4,8 @@ namespace sait.Models
 {
     public class Roles
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public DateTime CreateDate { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public DateTime createDate { get; set; }
     }
 }

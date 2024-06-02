@@ -4,15 +4,13 @@ namespace sait.ViewModels
 {
     public class LoginVM
     {
-        [Required(ErrorMessage = "Email is required.")]
+        [Required(ErrorMessage = "Введите ваш Email")]
+        [EmailAddress(ErrorMessage = "Неверный формат Email")]
         [DataType(DataType.EmailAddress)]
-        public string? Email { get; set; }
+        public string Email { get; set; }
 
-        [Required(ErrorMessage = "Password is required.")]
+        [Required(ErrorMessage = "Введите ваш пароль")]
         [DataType(DataType.Password)]
-        public string? Password { get; set; }
-
-        [Display(Name = "Remember Me")]
-        public bool RememberMe { get; set; }
+        public string Password { get; set; }
     }
 }

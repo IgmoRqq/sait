@@ -1,14 +1,14 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace sait.Models
 {
     public class Orders
     {
-        public int Id { get; set; }
-        public DateTime DateOrder { get; set; }
-        public string Status { get; set; }
-        public int IdUser { get; set; }
-
-        public Users User { get; set; }
+        public int id { get; set; }
+        public DateTime dateOrder { get; set; }
+        public string status { get; set; }
+        [ForeignKey("Users")]
+        public int idUser { get; set; }
     }
 }

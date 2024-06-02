@@ -1,17 +1,17 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace sait.Models
 {
     public class Pizzas
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Size { get; set; }
-        public float Price { get; set; }
-        public string Description { get; set; }
-        public int IdCategory { get; set; }
-        public DateTime CreateDate { get; set; }
-
-        public Categories Category { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public string size { get; set; }
+        public float price { get; set; }
+        public string description { get; set; }
+        [ForeignKey("Categories")]
+        public int idCategory { get; set; }
+        public DateTime createDate { get; set; }
     }
 }

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\arkad\\source\\repos\\structlab5\\sait\\сайт\\sait\\sait\\sait.csproj": {}
+    "C:\\Users\\vagaz\\Documents\\GitHub\\sait\\сайт\\sait\\sait\\sait.csproj": {}
   },
   "projects": {
-    "C:\\Users\\arkad\\source\\repos\\structlab5\\sait\\сайт\\sait\\sait\\sait.csproj": {
+    "C:\\Users\\vagaz\\Documents\\GitHub\\sait\\сайт\\sait\\sait\\sait.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\arkad\\source\\repos\\structlab5\\sait\\сайт\\sait\\sait\\sait.csproj",
+        "projectUniqueName": "C:\\Users\\vagaz\\Documents\\GitHub\\sait\\сайт\\sait\\sait\\sait.csproj",
         "projectName": "sait",
-        "projectPath": "C:\\Users\\arkad\\source\\repos\\structlab5\\sait\\сайт\\sait\\sait\\sait.csproj",
-        "packagesPath": "C:\\Users\\arkad\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\arkad\\source\\repos\\structlab5\\sait\\сайт\\sait\\sait\\obj\\",
+        "projectPath": "C:\\Users\\vagaz\\Documents\\GitHub\\sait\\сайт\\sait\\sait\\sait.csproj",
+        "packagesPath": "C:\\Users\\vagaz\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vagaz\\Documents\\GitHub\\sait\\сайт\\sait\\sait\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\arkad\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\vagaz\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,20 +34,15 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+            "BCrypt.Net-Next": {
               "target": "Package",
-              "version": "[8.0.6, )"
+              "version": "[4.0.3, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
@@ -83,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

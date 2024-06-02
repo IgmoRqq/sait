@@ -11,8 +11,8 @@ namespace sait.ViewModels
         [DataType(DataType.Password)]
         public string? Password { get; set; }
 
-        [Compare("Password", ErrorMessage = "Passwords don't match.")]
-        [Display(Name = "Confirm Password")]
+        [Compare("Password", ErrorMessage = "Пароли не совпадают.")]
+        [Display(Name = "Подтвердите пароль")]
         [DataType(DataType.Password)]
         public string? ConfirmPassword { get; set; }
 

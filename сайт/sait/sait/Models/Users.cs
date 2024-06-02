@@ -12,6 +12,4 @@ public class Users
 
     public string adress { get; set; }
     public DateTime createDate { get; set; }
-
-    public Roles Role { get; set; }
 }

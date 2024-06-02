@@ -1,13 +1,14 @@
-﻿namespace sait.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace sait.Models
 {
     public class OrderCombos
     {
-        public int Id { get; set; }
-        public int IdCombo { get; set; }
-        public int IdOrder { get; set; }
-        public int Count { get; set; }
-
-        public Combos Combo { get; set; }
-        public Orders Order { get; set; }
+        public int id { get; set; }
+        [ForeignKey("Combos")]
+        public int idCombo { get; set; }
+        [ForeignKey("Orders")]
+        public int idOrder { get; set; }
+        public int count { get; set; } 
     }
 }

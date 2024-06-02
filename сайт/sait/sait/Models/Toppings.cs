@@ -4,9 +4,9 @@ namespace sait.Models
 {
     public class Toppings
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Weight { get; set; }
-        public DateTime CreateDate { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public string weight { get; set; }
+        public DateTime createDate { get; set; }
     }
 }

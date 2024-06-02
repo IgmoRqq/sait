@@ -1,13 +1,14 @@
-﻿namespace sait.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace sait.Models
 {
     public class OrderPizzas
     {
-        public int Id { get; set; }
-        public int IdPizza { get; set; }
-        public int IdOrder { get; set; }
-        public int Count { get; set; }
-
-        public Pizzas Pizza { get; set; }
-        public Orders Order { get; set; }
+        public int id { get; set; }
+        [ForeignKey("Pizzas")]
+        public int idPizza { get; set; }
+        [ForeignKey("Orders")]
+        public int idOrder { get; set; }
+        public int count { get; set; }
     }
 }
