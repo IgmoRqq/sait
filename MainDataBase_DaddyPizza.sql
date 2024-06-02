@@ -10,13 +10,24 @@ create table Roles
 	createDate datetime not null,
 )
 
+insert into Pizzas(name, size, price, description, idCategory, createDate)
+values 
+('Мясная', 'Большая', 456, 'Цыпленок, ветчина, пикантная пепперони, острые колбаски чоризо, моцарелла, фирменный томатный соус', 1, GETDATE()),
+('Сырная', 'Большая', 478, 'Моцарелла, сыры чеддер и пармезан, фирменный соус альфредо', 1, GETDATE()),
+('Пеперони', 'Средняя', 389, 'Пикантная пепперони, увеличенная порция моцареллы, фирменный томатный соус', 2, GETDATE()),
+('Двойной цыпленок', 'Большая', 500, 'Цыпленок, моцарелла, фирменный соус альфредо', 3, GETDATE()),
+('Ветчина и сыр', 'Маленькая', 300, 'Ветчина, моцарелла, фирменный соус альфредо', 4, GETDATE());
 
+select *from Pizzas
+select *from Categories
+delete from Categories
+DBCC CHECKIDENT ('Categories', RESEED, 0);
 go
 create table Users
 (
 	id int Primary key identity,
 	email nvarchar(max) not null,
-	password nvarchar(12) not null,
+	password nvarchar(max) not null,
 	idRole int foreign key references Roles(id),
 	adress nvarchar(max) not null,
 	createDate datetime not null
@@ -107,9 +118,6 @@ create table ComboItems
 	idCombo int foreign key references Combos(id),
 	idPizza int foreign key references Pizzas(id)
 )
--- Rename the custom Roles table
-EXEC sp_rename 'Roles', 'ApplicationRoles';
-
 go
 create table OrderCombos
 (
@@ -121,6 +129,4 @@ create table OrderCombos
 GO
 USE PizzaForGoodDaddyDB
 GO
-insert into Roles values ('пользователь',GETDATE())
-
-select * from Users
+insert into Roles values ('пользователь',GETDATE()), ('админ',GETDATE())
