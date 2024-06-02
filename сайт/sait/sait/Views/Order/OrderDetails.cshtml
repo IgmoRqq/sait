@@ -1,0 +1,23 @@
+﻿@model List<sait.Models.Pizzas> 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Details</title>
+</head>
+<body>
+    <h1>Order Details</h1>
+    <table>
+        <tr>
+            <th>Pizza Name</th>
+            <th>Count</th>
+        </tr>
+        @foreach (var PIZZAS in Model)
+        {
+            <tr>
+                <td>@PIZZAS.name</td>
+            </tr>
+        }
+    </table>
+</body>
+</html>

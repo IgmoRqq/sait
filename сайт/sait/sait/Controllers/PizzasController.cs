@@ -91,7 +91,7 @@ namespace sait.Controllers
         // Очистка корзины после оформления заказа
         HttpContext.Session.Remove("Cart");
 
-        return RedirectToAction("Index");
+        return RedirectToAction("Index", new { id = order.id });
     }
         
     }

@@ -17,8 +17,17 @@ namespace sait.Controllers
 
         public async Task<IActionResult> Orders()
         {
+
             var orders = await _context.Orders.ToListAsync();
+            
             return View(orders);
+        }
+        public async Task<IActionResult> OrderDetails(int id)
+        {
+            var pizzas = _context.Pizzas.Where(p => _context.OrderPizzas.Any(o => o.idOrder == id && p.id == o.idPizza)).ToList();
+           // var PIZZAS = _context.Pizzas.Where(x => x.id == orders.idPizza);
+
+            return View(pizzas);
         }
     }
 }
