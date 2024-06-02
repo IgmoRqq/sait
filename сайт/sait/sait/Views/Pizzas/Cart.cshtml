@@ -1,0 +1,44 @@
+﻿@model IEnumerable<sait.ViewModels.CartItem>
+
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Мета-теги, стили и другое -->
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Корзина</h2>
+        <table class="table table-striped table-dark">
+            <!-- Заголовок таблицы -->
+            <tbody>
+                <!-- Содержимое корзины -->
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <!-- Колонки с информацией о товаре -->
+                        <td>@item.Pizza.name</td>
+                        <td>@item.Pizza.size</td>
+                        <td>@item.Pizza.price</td>
+                        <td>@item.Quantity</td>
+                        <td>
+                            <!-- Форма для отправки запроса на удаление товара из корзины -->
+                            <form asp-action="RemoveFromCart" method="post">
+                                <input type="hidden" name="id" value="@item.Pizza.id" />
+                                <button type="submit" class="btn btn-danger">Удалить</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <!-- Кнопка для оформления заказа -->
+        <form asp-action="PlaceOrder" method="post">
+            <button type="submit" class="btn btn-primary">Заказать</button>
+        </form>
+    </div>
+</body>
+</html>

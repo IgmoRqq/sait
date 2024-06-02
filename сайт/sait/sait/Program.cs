@@ -16,6 +16,7 @@ namespace sait
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddSession();
 
             // Register the database context
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -46,6 +47,7 @@ namespace sait
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseSession();
 
             app.UseAuthentication(); // Ensure authentication is used
             app.UseAuthorization();
