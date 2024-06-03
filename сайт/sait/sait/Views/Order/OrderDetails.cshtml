@@ -1,24 +1,103 @@
 ﻿@model List<sait.Models.Pizzas>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('~/images/pizzeria-back.jpg'); /* Замените на путь к вашему изображению */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            color: white;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        .container {
+            background-color: #EAE7DC;
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 1200px;
+        }
+
+        .table {
+            background-color: #D8C3A5;
+            border-radius: 15px;
+        }
+
+            .table thead th {
+                background-color: #3330;
+                color: white;
+            }
+
+            .table tbody tr {
+                background-color: rgba(255, 255, 255, 0.8);
+                color: black;
+            }
+
+                .table tbody tr:nth-child(even) {
+                    background-color: rgba(255, 255, 255, 0.6);
+                }
+
+            .table img {
+                width: 100px;
+                height: auto;
+                border-radius: 10px;
+            }
+
+        .btn-primary {
+            background-color: #E98074;
+            border: none;
+        }
+
+            .btn-primary:hover {
+                background-color: #e5533d;
+            }
+
+        .btn-success {
+            background-color: #8ea133;
+            border: none;
+        }
+
+            .btn-success:hover {
+                background-color: #218838;
+            }
+
+        .text-center {
+            text-align: center;
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Order Details</h1>
-    <table>
-        <tr>
-            <th>Pizza Name</th>
-            <th>Count</th>
-        </tr>
-        @foreach (var group in Model.GroupBy(p => p.name))
-        {
-            <tr>
-                <td>@group.Key</td>
-                <td>@group.Count()</td>
-            </tr>
-        }
-    </table>
+    <div class="container mt-5">
+        <h2 class="text-center">Order Details</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Pizza Name</th>
+                    <th>Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var group in Model.GroupBy(p => p.name))
+                {
+                    <tr>
+                        <td>@group.Key</td>
+                        <td>@group.Count()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

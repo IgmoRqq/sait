@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\arkad\\source\\repos\\structlab5\\sait\\сайт\\sait\\sait\\wwwroot\\images\\logo.png",
+      "PackagePath": "staticwebassets\\images\\logo.png"
+    },
+    {
       "Id": "C:\\Users\\arkad\\source\\repos\\structlab5\\sait\\сайт\\sait\\sait\\wwwroot\\images\\pizzeria-back.jpg",
       "PackagePath": "staticwebassets\\images\\pizzeria-back.jpg"
     },

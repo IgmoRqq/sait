@@ -20,19 +20,19 @@
             justify-content: center;
             align-items: center;
             margin: 0;
-            color: white;
+            color: rgb(255 164 172) !important;
             text-shadow: 2px 2px 4px #000;
         }
 
         .container {
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgb(52 97 89 / 70%);
             padding: 20px;
             border-radius: 15px;
             text-align: center;
         }
 
         .btn-menu {
-            background-color: #ff63;
+            background-color: #6e9995;
             border: none;
             color: white;
             padding: 10px 20px;
@@ -51,14 +51,11 @@
 <body>
     <div class="container">
         <h1 class="display-4">Добро пожаловать на самый лучший сайт самой лучшей пиццерии</h1>
-       
-        
         <br>
         <a href="@Url.Action("Index", "Pizzas")" class="btn-menu">Меню</a>
-        <a class="nav-link" href="@Url.Action("Orders", "Order")">My Orders</a>
+        <a href="@Url.Action("Orders", "Order")" class="btn-menu">Мои заказы</a>
         <a href="@Url.Action("Index", "Combos")" class="btn-menu">Комбо</a>
     </div>
- 
 </body>
 </html>
 

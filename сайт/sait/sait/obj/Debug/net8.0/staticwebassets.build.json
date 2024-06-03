@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "kOB0TghxE2WVY8tBaRSmpgTZv+WjSgY7HPZSYXQ/v/w=",
+  "Hash": "HqPkjosBPunsYJj4QXhUF/WJD1w2G0zwJDYIwx8gcHI=",
   "Source": "sait",
   "BasePath": "_content/sait",
   "Mode": "Default",
@@ -91,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\arkad\\source\\repos\\structlab5\\sait\\сайт\\sait\\sait\\wwwroot\\images\\logo.png",
+      "SourceId": "sait",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\arkad\\source\\repos\\structlab5\\sait\\сайт\\sait\\sait\\wwwroot\\",
+      "BasePath": "_content/sait",
+      "RelativePath": "images/logo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\logo.png"
     },
     {
       "Identity": "C:\\Users\\arkad\\source\\repos\\structlab5\\sait\\сайт\\sait\\sait\\wwwroot\\images\\pizzeria-back.jpg",
