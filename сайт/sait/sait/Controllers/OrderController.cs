@@ -17,62 +17,78 @@ namespace sait.Controllers
 
         public async Task<IActionResult> Orders()
         {
+            try
+            {
 
-            var orders = await _context.Orders.ToListAsync();
-            
-            return View(orders);
+                var orders = await _context.Orders.ToListAsync();
+
+                return View(orders);
+            }
+            catch
+            {
+                return View(null);
+            }
         }
         public async Task<IActionResult> OrderDetails(int id)
         {
-    //        var pizzas = _context.Pizzas
-    //.Where(p => _context.OrderPizzas.Any(o => o.idOrder == id && p.id == o.idPizza))
-    //.ToList();
-            List<Pizzas> pizzas = new List<Pizzas>();
-            foreach (var a in _context.OrderPizzas.ToList()) // Здесь вызываем ToList()
+            try
             {
-                if (a.idOrder == id)
+
+                List<Pizzas> pizzas = new List<Pizzas>();
+                foreach (var a in _context.OrderPizzas.ToList()) // Здесь вызываем ToList()
                 {
-                    foreach (var b in _context.Pizzas.ToList()) // Здесь также вызываем ToList()
+                    if (a.idOrder == id)
                     {
-                        if (b.id == a.idPizza)
+                        foreach (var b in _context.Pizzas.ToList()) // Здесь также вызываем ToList()
                         {
-                            //pizzas.Add(b);
-                            for (int i = 0;i < a.count;i++)
+                            if (b.id == a.idPizza)
                             {
-                                pizzas.Add(b);
+                                //pizzas.Add(b);
+                                for (int i = 0; i < a.count; i++)
+                                {
+                                    pizzas.Add(b);
+                                }
                             }
                         }
                     }
                 }
-            }
 
-            return View(pizzas);
+                return View(pizzas);
+            }
+            catch
+            {
+                return View(null);
+            }
         }
         public async Task<IActionResult> OrderComboDetails(int id)
         {
-            //        var pizzas = _context.Pizzas
-            //.Where(p => _context.OrderPizzas.Any(o => o.idOrder == id && p.id == o.idPizza))
-            //.ToList();
-            List<Combos> combos = new List<Combos>();
-            foreach (var a in _context.OrderCombos.ToList()) // Здесь вызываем ToList()
+            try
             {
-                if (a.idOrder == id)
+                List<Combos> combos = new List<Combos>();
+                foreach (var a in _context.OrderCombos.ToList()) // Здесь вызываем ToList()
                 {
-                    foreach (var b in _context.Combos.ToList()) // Здесь также вызываем ToList()
+                    if (a.idOrder == id)
                     {
-                        if (b.id == a.idCombo)
+                        foreach (var b in _context.Combos.ToList()) // Здесь также вызываем ToList()
                         {
-                            //pizzas.Add(b);
-                            for (int i = 0; i < a.count; i++)
+                            if (b.id == a.idCombo)
                             {
-                                combos.Add(b);
+                                //pizzas.Add(b);
+                                for (int i = 0; i < a.count; i++)
+                                {
+                                    combos.Add(b);
+                                }
                             }
                         }
                     }
                 }
-            }
 
-            return View(combos);
+                return View(combos);
+            }
+            catch
+            {
+                return View(null);
+            }
         }
     }
 }

@@ -20,28 +20,42 @@ namespace sait.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var pizzas = await _context.Pizzas.ToListAsync();
-            return View(pizzas);
+            try
+            {
+                var pizzas = await _context.Pizzas.ToListAsync();
+                return View(pizzas);
+            }
+            catch
+            {
+                return View(null);
+            }
         }
         [HttpPost]
         public IActionResult AddToCart(int id)
         {
-            var pizza = _context.Pizzas.FirstOrDefault(p => p.id == id);
-            if (pizza != null)
+            try
             {
-                var cart = HttpContext.Session.GetObjectFromJson<List<CartItem>>("Cart") ?? new List<CartItem>();
-                var cartItem = cart.FirstOrDefault(c => c.Pizza.id == id);
-                if (cartItem == null)
+                var pizza = _context.Pizzas.FirstOrDefault(p => p.id == id);
+                if (pizza != null)
                 {
-                    cart.Add(new CartItem { Pizza = pizza, Quantity = 1 });
+                    var cart = HttpContext.Session.GetObjectFromJson<List<CartItem>>("Cart") ?? new List<CartItem>();
+                    var cartItem = cart.FirstOrDefault(c => c.Pizza.id == id);
+                    if (cartItem == null)
+                    {
+                        cart.Add(new CartItem { Pizza = pizza, Quantity = 1 });
+                    }
+                    else
+                    {
+                        cartItem.Quantity++;
+                    }
+                    HttpContext.Session.SetObjectAsJson("Cart", cart);
                 }
-                else
-                {
-                    cartItem.Quantity++;
-                }
-                HttpContext.Session.SetObjectAsJson("Cart", cart);
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            catch
+            {
+                return View(null);
+            }
         }
 
         public IActionResult Cart()
@@ -64,35 +78,42 @@ namespace sait.Controllers
 
     public IActionResult PlaceOrder()
     {
-        var cart = HttpContext.Session.GetObjectFromJson<List<CartItem>>("Cart") ?? new List<CartItem>();
-
-        // Создание нового заказа
-        var order = new Orders
-        {
-            dateOrder = DateTime.Now,
-            status = "Ready", // Устанавливаем статус заказа, например, "Новый"
-            idUser = CurrentUser.user.id // Укажите ID пользователя, который делает заказ
-        };
-        _context.Orders.Add(order);
-        _context.SaveChanges();
-
-        // Добавление пицц в заказ
-        foreach (var item in cart)
-        {
-            _context.OrderPizzas.Add(new OrderPizzas
+            try
             {
-                idPizza = item.Pizza.id,
-                idOrder = order.id,
-                count = item.Quantity
-            });
+                var cart = HttpContext.Session.GetObjectFromJson<List<CartItem>>("Cart") ?? new List<CartItem>();
+
+                // Создание нового заказа
+                var order = new Orders
+                {
+                    dateOrder = DateTime.Now,
+                    status = "Ready", // Устанавливаем статус заказа, например, "Новый"
+                    idUser = CurrentUser.user.id // Укажите ID пользователя, который делает заказ
+                };
+                _context.Orders.Add(order);
+                _context.SaveChanges();
+
+                // Добавление пицц в заказ
+                foreach (var item in cart)
+                {
+                    _context.OrderPizzas.Add(new OrderPizzas
+                    {
+                        idPizza = item.Pizza.id,
+                        idOrder = order.id,
+                        count = item.Quantity
+                    });
+                }
+                _context.SaveChanges();
+
+                // Очистка корзины после оформления заказа
+                HttpContext.Session.Remove("Cart");
+
+                return RedirectToAction("Index", "Home");
+            }
+            catch
+            {
+                return View(null);
+            }
         }
-        _context.SaveChanges();
-
-        // Очистка корзины после оформления заказа
-        HttpContext.Session.Remove("Cart");
-
-        return RedirectToAction("Index", "Home");
-    }
         
     }
 }

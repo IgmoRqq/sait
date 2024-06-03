@@ -1,17 +1,63 @@
-﻿<!DOCTYPE html>
+﻿@{
+    ViewData["Title"] = "Добро пожаловать, дорогой Админ";
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Добро пожаловать, дорогой Админ</title>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('/images/pizza.jpg'); /* Относительный путь */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            color: rgb(255 164 172) !important;
+            text-shadow: 2px 2px 4px #000;
+            
+        }
+
+        .container {
+            background-color: rgba(52, 97, 89, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .btn-menu {
+            background-color: #E98074;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+        }
+
+            .btn-menu:hover {
+                background-color: #D97064;
+            }
+    </style>
 </head>
 <body>
-    <h1>Добро пожаловать, дорогой Админ</h1>
-    <p>Выберите действие:</p>
-    <button onclick="window.location.href='/Users1'">Users</button>
-    <button onclick="window.location.href='/Pizzas1'">Pizzas</button>
-    <button onclick="window.location.href='/Combos1'">Combos</button>
-    <button onclick="window.location.href='/Orders1'">Orders</button>
-    <button onclick="window.location.href='/OrderPizzas1'">OrderPizzas</button>
+    <div class="container">
+        <h1 class="display-4">Добро пожаловать, дорогой Админ</h1>
+        <p>Выберите действие:</p>
+        <a href="@Url.Action("Index","Users1")" class="btn-menu">Users</a>
+        <a href="@Url.Action("Index","Pizzas1")" class="btn-menu">Pizzas</a>
+        <a href="@Url.Action("Index","Combos1")" class="btn-menu">Combos</a>
+        <a href="@Url.Action("Index","Orders1")" class="btn-menu">Orders</a>
+        <a href="@Url.Action("Index","OrderPizzas1")" class="btn-menu">OrderPizzas</a>
+    </div>
 </body>
 </html>

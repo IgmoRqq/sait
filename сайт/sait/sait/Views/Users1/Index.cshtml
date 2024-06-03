@@ -6,62 +6,137 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('/images/pizza.jpg'); 
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            color: rgb(255 164 172) !important;
+            t/* ext-shadow: 2px 2px 4px #000; */
+        }
+
+        .container {
+            background-color: rgba(52, 97, 89, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .btn-menu {
+            background-color: #E98074;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+        }
+
+            .btn-menu:hover {
+                background-color: #D97064;
+            }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #EAE7DC;
+            color: #E98074;
+        }
+
+        td {
+            background-color: #EAE7DC;
+            color: #E98074;
+        }
+
+        a {
+            color: #E98074;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+    </style>
 </head>
 <body>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.password)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.idRole)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.adress)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.createDate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.password)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.idRole)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.adress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.createDate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <div class="container">
+        <h1 class="display-4">User List</h1>
+        <p>
+            <a asp-action="Create" class="btn-menu">Create New</a>
+        </p>
+        <p>
+            <a href="@Url.Action("Index","Home1")" class="btn btn-success">Назад в меню</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.password)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.idRole)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.adress)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.createDate)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.password)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.idRole)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.adress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.createDate)
+                        </td>
+                       
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
+

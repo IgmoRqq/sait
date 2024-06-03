@@ -5,18 +5,77 @@
 }
 
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Create</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('/images/pizza.jpg'); 
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            color: black;
+        /*     text-shadow: 2px 2px 4px #000; */
+        }
+        .col-md-4{
+            background-color: #e5533d;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: #E98074;
+            border: none;
+        }
+
+            .btn-primary:hover {
+                background-color: #e5533d;
+            }
+
+        .text-danger {
+            color: #e5533d;
+        }
+
+        .btn-back {
+            background-color: #8ea133;
+            border: none;
+            color: black;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+            .btn-back:hover {
+                background-color: #e5533d;
+            }
+
+        .form-group{
+            background-color: #e5533d;
+        }
+        .form-group label {
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-
-<h4>Pizzas</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+    <div class="container mt-5">
+        <h2 class="text-center">Create Pizza</h2>
+        <hr />
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -49,19 +108,19 @@
                 <input asp-for="createDate" class="form-control" />
                 <span asp-validation-for="createDate" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group text-center">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
+        <div class="text-center">
+            <a href="@Url.Action("Index")" class="btn-back">Back to List</a>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
 </body>
 </html>

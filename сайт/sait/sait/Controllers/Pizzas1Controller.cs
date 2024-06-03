@@ -56,13 +56,20 @@ namespace sait.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("id,name,size,price,description,idCategory,createDate")] Pizzas pizzas)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(pizzas);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    _context.Add(pizzas);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                return View(pizzas);
             }
-            return View(pizzas);
+            catch
+            {
+                return RedirectToAction("Error1", "Users1");
+            }
         }
 
         // GET: Pizzas1/Edit/5
@@ -88,66 +95,42 @@ namespace sait.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("id,name,size,price,description,idCategory,createDate")] Pizzas pizzas)
         {
-            if (id != pizzas.id)
+            try
             {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
+                if (id != pizzas.id)
                 {
-                    _context.Update(pizzas);
-                    await _context.SaveChangesAsync();
+                    return NotFound();
                 }
-                catch (DbUpdateConcurrencyException)
+
+                if (ModelState.IsValid)
                 {
-                    if (!PizzasExists(pizzas.id))
+                    try
                     {
-                        return NotFound();
+                        _context.Update(pizzas);
+                        await _context.SaveChangesAsync();
                     }
-                    else
+                    catch (DbUpdateConcurrencyException)
                     {
-                        throw;
+                        if (!PizzasExists(pizzas.id))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
                     }
+                    return RedirectToAction(nameof(Index));
                 }
-                return RedirectToAction(nameof(Index));
+                return View(pizzas);
             }
-            return View(pizzas);
+            catch
+            {
+                return RedirectToAction("Error1", "Users1");
+            }
         }
 
-        // GET: Pizzas1/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var pizzas = await _context.Pizzas
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (pizzas == null)
-            {
-                return NotFound();
-            }
-
-            return View(pizzas);
-        }
-
-        // POST: Pizzas1/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var pizzas = await _context.Pizzas.FindAsync(id);
-            if (pizzas != null)
-            {
-                _context.Pizzas.Remove(pizzas);
-            }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        
 
         private bool PizzasExists(int id)
         {

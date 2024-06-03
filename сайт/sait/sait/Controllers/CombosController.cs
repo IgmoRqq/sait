@@ -20,29 +20,43 @@ namespace sait.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var combos = await _context.Combos.ToListAsync();
-            return View(combos);
+            try
+            {
+                var combos = await _context.Combos.ToListAsync();
+                return View(combos);
+            }
+            catch
+            {
+                return View(null);
+            }
         }
 
         [HttpPost]
         public IActionResult AddToCart(int id)
         {
-            var combo = _context.Combos.FirstOrDefault(c => c.id == id);
-            if (combo != null)
+            try
             {
-                var cart = HttpContext.Session.GetObjectFromJson<List<CartCombo>>("Cart") ?? new List<CartCombo>();
-                var CartCombo = cart.FirstOrDefault(c => c.Combo.id == id);
-                if (CartCombo == null)
+                var combo = _context.Combos.FirstOrDefault(c => c.id == id);
+                if (combo != null)
                 {
-                    cart.Add(new CartCombo { Combo = combo, Quantity = 1 });
+                    var cart = HttpContext.Session.GetObjectFromJson<List<CartCombo>>("Cart") ?? new List<CartCombo>();
+                    var CartCombo = cart.FirstOrDefault(c => c.Combo.id == id);
+                    if (CartCombo == null)
+                    {
+                        cart.Add(new CartCombo { Combo = combo, Quantity = 1 });
+                    }
+                    else
+                    {
+                        CartCombo.Quantity++;
+                    }
+                    HttpContext.Session.SetObjectAsJson("Cart", cart);
                 }
-                else
-                {
-                    CartCombo.Quantity++;
-                }
-                HttpContext.Session.SetObjectAsJson("Cart", cart);
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            catch
+            {
+                return View(null);
+            }
         }
 
         public IActionResult Cart()

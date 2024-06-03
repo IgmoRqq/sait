@@ -29,42 +29,49 @@
         [HttpPost]
         public async Task<IActionResult> Login(LoginVM model, string returnUrl)
         {
-            ViewData["ReturnUrl"] = returnUrl;
-            if (ModelState.IsValid)
+            try
             {
-                var user = await _context.Users.FirstOrDefaultAsync(u => u.email == model.Email);
-
-                if (user != null && BCrypt.Net.BCrypt.Verify(model.Password, user.password))
+                ViewData["ReturnUrl"] = returnUrl;
+                if (ModelState.IsValid)
                 {
-                    var claims = new List<Claim>
+                    var user = await _context.Users.FirstOrDefaultAsync(u => u.email == model.Email);
+
+                    if (user != null && BCrypt.Net.BCrypt.Verify(model.Password, user.password))
+                    {
+                        var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, user.email),
                     };
 
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    var authProperties = new AuthenticationProperties
-                    {
-                        IsPersistent = true,
-                    };
+                        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        var authProperties = new AuthenticationProperties
+                        {
+                            IsPersistent = true,
+                        };
 
-                    await HttpContext.SignInAsync(
-                        CookieAuthenticationDefaults.AuthenticationScheme,
-                        new ClaimsPrincipal(claimsIdentity),
-                        authProperties);
-                    if (user.idRole == 1)
-                    {
-                        return RedirectToLocal(returnUrl);
+                        await HttpContext.SignInAsync(
+                            CookieAuthenticationDefaults.AuthenticationScheme,
+                            new ClaimsPrincipal(claimsIdentity),
+                            authProperties);
+                        if (user.idRole == 1)
+                        {
+                            return RedirectToLocal(returnUrl);
+                        }
+                        else if (user.idRole == 2)
+                        {
+                            return RedirectToAction("Index", "Home1");
+                        }
                     }
-                    else if (user.idRole == 2)
-                    {
-                        return RedirectToAction("Index", "Home1");
-                    }
+
+
+                    ModelState.AddModelError("", "Не удалось войти в аккаунт");
                 }
-
-
-                ModelState.AddModelError("", "Не удалось войти в аккаунт");
+                return View(model);
             }
-            return View(model);
+            catch
+            {
+                return View(null);
+            }
         }
 
         public IActionResult Register(string? returnUrl = null)
@@ -76,48 +83,55 @@
         [HttpPost]
         public async Task<IActionResult> Register(RegisterVM model, string returnUrl)
         {
-            ViewData["ReturnUrl"] = returnUrl;
-            if (ModelState.IsValid)
+            try
             {
-                var isUserExists = await _context.Users.FirstOrDefaultAsync(u => u.email == model.Email);
-                if (isUserExists != null)
+                ViewData["ReturnUrl"] = returnUrl;
+                if (ModelState.IsValid)
                 {
-                    ModelState.AddModelError("", "Пользователь с таким email уже существует");
-                    return View(model);
-                }
+                    var isUserExists = await _context.Users.FirstOrDefaultAsync(u => u.email == model.Email);
+                    if (isUserExists != null)
+                    {
+                        ModelState.AddModelError("", "Пользователь с таким email уже существует");
+                        return View(model);
+                    }
 
-                var hashedPassword = BCrypt.Net.BCrypt.HashPassword(model.Password);
+                    var hashedPassword = BCrypt.Net.BCrypt.HashPassword(model.Password);
 
-                var newUser = new Users
-                {
-                    email = model.Email,
-                    password = hashedPassword,
-                    createDate = DateTime.Now,
-                    idRole = 1,
-                    adress = model.Address
-                };
+                    var newUser = new Users
+                    {
+                        email = model.Email,
+                        password = hashedPassword,
+                        createDate = DateTime.Now,
+                        idRole = 1,
+                        adress = model.Address
+                    };
 
-                _context.Users.Add(newUser);
-                await _context.SaveChangesAsync();
+                    _context.Users.Add(newUser);
+                    await _context.SaveChangesAsync();
 
-                var claims = new List<Claim>
+                    var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, newUser.email),
                 };
 
-                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                var authProperties = new AuthenticationProperties
-                {
-                    IsPersistent = true,
-                };
+                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var authProperties = new AuthenticationProperties
+                    {
+                        IsPersistent = true,
+                    };
 
-                await HttpContext.SignInAsync(
-                    CookieAuthenticationDefaults.AuthenticationScheme,
-                    new ClaimsPrincipal(claimsIdentity),
-                    authProperties);
-                return RedirectToLocal(returnUrl);
+                    await HttpContext.SignInAsync(
+                        CookieAuthenticationDefaults.AuthenticationScheme,
+                        new ClaimsPrincipal(claimsIdentity),
+                        authProperties);
+                    return RedirectToLocal(returnUrl);
+                }
+                return View(model);
             }
-            return View(model);
+            catch
+            {
+                return View(null);
+            }
         }
 
 public async Task<IActionResult> Logout()
