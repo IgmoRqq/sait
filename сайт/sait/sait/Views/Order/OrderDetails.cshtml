@@ -1,4 +1,4 @@
-﻿@model List<sait.Models.Pizzas> 
+﻿@model List<sait.Models.Pizzas>
 
 <!DOCTYPE html>
 <html>
@@ -12,10 +12,11 @@
             <th>Pizza Name</th>
             <th>Count</th>
         </tr>
-        @foreach (var PIZZAS in Model)
+        @foreach (var group in Model.GroupBy(p => p.name))
         {
             <tr>
-                <td>@PIZZAS.name</td>
+                <td>@group.Key</td>
+                <td>@group.Count()</td>
             </tr>
         }
     </table>

@@ -1,0 +1,76 @@
+﻿@model IEnumerable<sait.Models.Combos>
+
+@{
+    ViewData["Title"] = "Combos List";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combos List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('~/images/pizzeria-back.jpg'); /* Замените на путь к вашему изображению */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            color: white;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Combos List</h2>
+        <table class="table table-striped table-dark">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Created Date</th>
+                    <th>Price</th>
+                    <th>Category Id</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var combo in Model)
+                {
+                    <tr>
+                        <td>@combo.id</td>
+                        <td>@combo.name</td>
+                        <td>@combo.desription</td>
+                        <td>@combo.createDate.ToString("yyyy-MM-dd")</td>
+                        <td>@combo.price</td>
+                        <td>@combo.idCategory</td>
+                        <td>
+                            <form asp-action="AddToCart" method="post">
+                                <input type="hidden" name="id" value="@combo.id" />
+                                <button type="submit" class="btn btn-primary">Добавить</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="text-center">
+            <a href="@Url.Action("Cart")" class="btn btn-success">Перейти в корзину</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -24,8 +24,27 @@ namespace sait.Controllers
         }
         public async Task<IActionResult> OrderDetails(int id)
         {
-            var pizzas = _context.Pizzas.Where(p => _context.OrderPizzas.Any(o => o.idOrder == id && p.id == o.idPizza)).ToList();
-           // var PIZZAS = _context.Pizzas.Where(x => x.id == orders.idPizza);
+    //        var pizzas = _context.Pizzas
+    //.Where(p => _context.OrderPizzas.Any(o => o.idOrder == id && p.id == o.idPizza))
+    //.ToList();
+            List<Pizzas> pizzas = new List<Pizzas>();
+            foreach (var a in _context.OrderPizzas.ToList()) // Здесь вызываем ToList()
+            {
+                if (a.idOrder == id)
+                {
+                    foreach (var b in _context.Pizzas.ToList()) // Здесь также вызываем ToList()
+                    {
+                        if (b.id == a.idPizza)
+                        {
+                            //pizzas.Add(b);
+                            for (int i = 0;i < a.count;i++)
+                            {
+                                pizzas.Add(b);
+                            }
+                        }
+                    }
+                }
+            }
 
             return View(pizzas);
         }

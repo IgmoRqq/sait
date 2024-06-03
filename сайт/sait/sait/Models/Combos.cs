@@ -7,9 +7,9 @@ namespace sait.Models
     {
         public int id { get; set; }
         public string name { get; set; }
-        public string description { get; set; }
+        public string desription { get; set; }
         public DateTime createDate { get; set; }
-        public float price { get; set; }
+        public double price { get; set; }
         [ForeignKey("Categories")]
         public int idCategory { get; set; }
     }

@@ -34,6 +34,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Combos/Cart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tYm9zXENhcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Combos/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tYm9zXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -44,6 +52,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/OrderPizzas/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJQaXp6YXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/OrderPizzas/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJQaXp6YXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/OrderPizzas/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJQaXp6YXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/OrderPizzas/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJQaXp6YXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/OrderPizzas/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJQaXp6YXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Order/OrderDetails.cshtml]
