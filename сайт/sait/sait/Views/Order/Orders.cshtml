@@ -20,6 +20,7 @@
             {
                 @if (order.idUser == CurrentUser.user.id)
                 {
+                    @if (order.status == "Ready") {
                     <tr>
 
                     <td>@order.dateOrder.ToString("yyyy-MM-dd HH:mm:ss")</td>
@@ -29,6 +30,19 @@
                         <a asp-action="OrderDetails" asp-route-id="@order.id" class="btn btn-info">View Details</a>
                     </td>
                 </tr>
+                    }
+                    @if (order.status == "prepare")
+                    {
+                        <tr>
+
+                            <td>@order.dateOrder.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                            <td>@order.status</td>
+
+                            <td>
+                                <a asp-action="OrderComboDetails" asp-route-id="@order.id" class="btn btn-info">View Details</a>
+                            </td>
+                        </tr>
+                    }
                 }
             }
         </tbody>

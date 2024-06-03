@@ -48,5 +48,31 @@ namespace sait.Controllers
 
             return View(pizzas);
         }
+        public async Task<IActionResult> OrderComboDetails(int id)
+        {
+            //        var pizzas = _context.Pizzas
+            //.Where(p => _context.OrderPizzas.Any(o => o.idOrder == id && p.id == o.idPizza))
+            //.ToList();
+            List<Combos> combos = new List<Combos>();
+            foreach (var a in _context.OrderCombos.ToList()) // Здесь вызываем ToList()
+            {
+                if (a.idOrder == id)
+                {
+                    foreach (var b in _context.Combos.ToList()) // Здесь также вызываем ToList()
+                    {
+                        if (b.id == a.idCombo)
+                        {
+                            //pizzas.Add(b);
+                            for (int i = 0; i < a.count; i++)
+                            {
+                                combos.Add(b);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return View(combos);
+        }
     }
 }

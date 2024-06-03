@@ -72,7 +72,7 @@ namespace sait.Controllers
             var order = new Orders
             {
                 dateOrder = DateTime.Now,
-                status = "Ready", // Устанавливаем статус заказа, например, "Готов"
+                status = "prepare", // Устанавливаем статус заказа, например, "Готов"
                 idUser = CurrentUser.user.id // Укажите ID пользователя, который делает заказ
             };
             _context.Orders.Add(order);
