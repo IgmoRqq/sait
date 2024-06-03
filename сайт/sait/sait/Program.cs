@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using sait.DataBase;
+using sait.ViewModels;
 
 namespace sait
 {
@@ -21,18 +22,18 @@ namespace sait
             // Register the database context
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
             builder.Services.AddAuthentication(options =>
             {
                 options.DefaultScheme = "Cookies";
                 options.DefaultChallengeScheme = "Cookies";
             }).AddCookie("Cookies", options =>
             {
-                options.Cookie.Name = "DaddysPizzaCockies"; // Укажите имя куки
-                options.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.None; // Разрешить использование куки во внешних сайтах
-                options.Cookie.HttpOnly = true; // Запретить JavaScript доступ к куки
-                options.ExpireTimeSpan = TimeSpan.FromDays(30); // Время жизни куки (30 дней, например)
+                options.Cookie.Name = "DaddysPizzaCookies";
+                options.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.None;
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromDays(30);
             });
-
 
             var app = builder.Build();
 
@@ -49,8 +50,9 @@ namespace sait
             app.UseRouting();
             app.UseSession();
 
-            app.UseAuthentication(); // Ensure authentication is used
+            app.UseAuthentication();
             app.UseAuthorization();
+            app.UseMiddleware<CurrentUserMiddleware>();
 
             app.MapControllerRoute(
                 name: "default",
@@ -59,4 +61,5 @@ namespace sait
             app.Run();
         }
     }
+
 }

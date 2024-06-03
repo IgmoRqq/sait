@@ -1,4 +1,5 @@
-﻿    using BCrypt.Net; // Добавьте это пространство имен
+﻿
+    using BCrypt.Net; // Добавьте это пространство имен
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authentication.Cookies;
     using Microsoft.AspNetCore.Mvc;
@@ -9,55 +10,56 @@
     using System.Security.Claims;
 
     namespace sait.Controllers
+{
+    public class AccountController : Controller
     {
-        public class AccountController : Controller
+        private readonly ApplicationDbContext _context;
+
+        public AccountController(ApplicationDbContext context)
         {
-            private readonly ApplicationDbContext _context;
+            _context = context;
+        }
 
-            public AccountController(ApplicationDbContext context)
-            {
-                _context = context;
-            }
+        public IActionResult Login(string? returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            return View();
+        }
 
-            public IActionResult Login(string? returnUrl = null)
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginVM model, string returnUrl)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            if (ModelState.IsValid)
             {
-                ViewData["ReturnUrl"] = returnUrl;
-                return View();
-            }
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.email == model.Email);
 
-            [HttpPost]
-            public async Task<IActionResult> Login(LoginVM model, string returnUrl)
-            {
-                ViewData["ReturnUrl"] = returnUrl;
-                if (ModelState.IsValid)
+                if (user != null && BCrypt.Net.BCrypt.Verify(model.Password, user.password))
                 {
-                    var user = await _context.Users.FirstOrDefaultAsync(u => u.email == model.Email);
-
-                    if (user != null && BCrypt.Net.BCrypt.Verify(model.Password, user.password))
+                    var claims = new List<Claim>
                     {
-                        var claims = new List<Claim>
-                        {
-                            new Claim(ClaimTypes.Name, user.email),
-                        };
+                        new Claim(ClaimTypes.Name, user.email),
+                    };
 
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     var authProperties = new AuthenticationProperties
-                        {
-                            IsPersistent = true,
-                        };
+                    {
+                        IsPersistent = true,
+                    };
 
                     await HttpContext.SignInAsync(
                         CookieAuthenticationDefaults.AuthenticationScheme,
                         new ClaimsPrincipal(claimsIdentity),
                         authProperties);
-                    CurrentUser.user=user;
-                        return RedirectToLocal(returnUrl);
-                    }
 
-                    ModelState.AddModelError("", "Не удалось войти в аккаунт");
+                    return RedirectToLocal(returnUrl);
                 }
-                return View(model);
+
+
+                ModelState.AddModelError("", "Не удалось войти в аккаунт");
             }
+            return View(model);
+        }
 
         public IActionResult Register(string? returnUrl = null)
         {
@@ -107,13 +109,12 @@
                     CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(claimsIdentity),
                     authProperties);
-                CurrentUser.user= newUser;  
                 return RedirectToLocal(returnUrl);
             }
             return View(model);
         }
 
-        public async Task<IActionResult> Logout()
+public async Task<IActionResult> Logout()
         {
             // Вызываем метод SignOutAsync для очистки аутентификационных кук
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
