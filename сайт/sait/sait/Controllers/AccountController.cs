@@ -51,8 +51,14 @@
                         CookieAuthenticationDefaults.AuthenticationScheme,
                         new ClaimsPrincipal(claimsIdentity),
                         authProperties);
-
-                    return RedirectToLocal(returnUrl);
+                    if (user.idRole == 1)
+                    {
+                        return RedirectToLocal(returnUrl);
+                    }
+                    else if (user.idRole == 2)
+                    {
+                        return RedirectToAction("Index", "Home1");
+                    }
                 }
 
 

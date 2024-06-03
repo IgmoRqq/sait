@@ -34,12 +34,36 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Combos1/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tYm9zMVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Combos1/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tYm9zMVxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Combos1/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tYm9zMVxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Combos1/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tYm9zMVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Combos1/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tYm9zMVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Combos/Cart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tYm9zXENhcnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Combos/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tYm9zXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Home1/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZTFcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Home/Index.cshtml]
@@ -52,6 +76,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/OrderPizzas1/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJQaXp6YXMxXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/OrderPizzas1/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJQaXp6YXMxXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/OrderPizzas1/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJQaXp6YXMxXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/OrderPizzas1/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJQaXp6YXMxXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/OrderPizzas1/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJQaXp6YXMxXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/OrderPizzas/Create.cshtml]
@@ -74,6 +118,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJQaXp6YXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Orders1/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzMVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Orders1/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzMVxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Orders1/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzMVxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Orders1/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzMVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Orders1/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzMVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Order/OrderComboDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcT3JkZXJDb21ib0RldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -84,6 +148,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Order/Orders.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcT3JkZXJzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Pizzas1/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGl6emFzMVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Pizzas1/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGl6emFzMVxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Pizzas1/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGl6emFzMVxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Pizzas1/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGl6emFzMVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Pizzas1/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGl6emFzMVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Pizzas/Cart.cshtml]
@@ -116,6 +200,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Users1/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnMxXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Users1/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnMxXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Users1/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnMxXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Users1/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnMxXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/Users1/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnMxXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/arkad/source/repos/structlab5/sait/сайт/sait/sait/Views/_ViewImports.cshtml]
