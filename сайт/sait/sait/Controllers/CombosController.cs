@@ -55,7 +55,7 @@ namespace sait.Controllers
             }
             catch
             {
-                return View(null);
+                return RedirectToAction("Error1", "Users1");
             }
         }
 
@@ -80,34 +80,41 @@ namespace sait.Controllers
 
         public IActionResult PlaceOrder()
         {
-            var cart = HttpContext.Session.GetObjectFromJson<List<CartCombo>>("Cart") ?? new List<CartCombo>();
-
-            // Создание нового заказа
-            var order = new Orders
+            try
             {
-                dateOrder = DateTime.Now,
-                status = "prepare", // Устанавливаем статус заказа, например, "Готов"
-                idUser = CurrentUser.user.id // Укажите ID пользователя, который делает заказ
-            };
-            _context.Orders.Add(order);
-            _context.SaveChanges();
+                var cart = HttpContext.Session.GetObjectFromJson<List<CartCombo>>("Cart") ?? new List<CartCombo>();
 
-            // Добавление комбинированных блюд в заказ
-            foreach (var item in cart)
-            {
-                _context.OrderCombos.Add(new OrderCombos
+                // Создание нового заказа
+                var order = new Orders
                 {
-                    idCombo = item.Combo.id,
-                    idOrder = order.id,
-                    count = item.Quantity
-                });
+                    dateOrder = DateTime.Now,
+                    status = "prepare", // Устанавливаем статус заказа, например, "Готов"
+                    idUser = CurrentUser.user.id // Укажите ID пользователя, который делает заказ
+                };
+                _context.Orders.Add(order);
+                _context.SaveChanges();
+
+                // Добавление комбинированных блюд в заказ
+                foreach (var item in cart)
+                {
+                    _context.OrderCombos.Add(new OrderCombos
+                    {
+                        idCombo = item.Combo.id,
+                        idOrder = order.id,
+                        count = item.Quantity
+                    });
+                }
+                _context.SaveChanges();
+
+                // Очистка корзины после оформления заказа
+                HttpContext.Session.Remove("Cart");
+
+                return RedirectToAction("Index", "Home");
             }
-            _context.SaveChanges();
-
-            // Очистка корзины после оформления заказа
-            HttpContext.Session.Remove("Cart");
-
-            return RedirectToAction("Index", "Home");
+            catch 
+            {
+                return RedirectToAction("Error1", "Users1");
+            }
         }
     }
 }

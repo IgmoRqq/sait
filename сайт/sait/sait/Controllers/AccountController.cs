@@ -136,6 +136,7 @@
 
 public async Task<IActionResult> Logout()
         {
+            HttpContext.Session.Remove("Cart");
             // Вызываем метод SignOutAsync для очистки аутентификационных кук
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 

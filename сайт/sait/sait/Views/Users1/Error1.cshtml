@@ -5,18 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Пример страницы</title>
     <style>
-        .blue-text {
-            color: blue;
-            font-size: 20px;
+        body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: wheat
+        }
+
+        .error-table td {
+            border: 1px solid #de1717;
+            background-color: wheat;
+        }
+
+           /*  .error-table, .error-table th, .error-table td {
+                border: 1px solid red;
+            } */
+
+                .error-table th, .error-table td {
+                    padding: 10px;
+                    text-align: center;
+                }
+
+        .error-message {
+            color: red;
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
-    <div class="blue-text">
-        Попробуйте что-то другое...
+    <div>
+        <table class="error-table">
+            <thead>
+                <tr>
+                    <th>Ошибка</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="error-message">Попробуйте что-то другое...</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
+
